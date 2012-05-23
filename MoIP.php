@@ -178,6 +178,8 @@ class MoIP
     {
         $this->xml = new SimpleXmlElement('<EnviarInstrucao></EnviarInstrucao>');
         $this->xml->addChild('InstrucaoUnica');
+	//adiciona o atributo de validacao transparente
+	$this->xml->InstrucaoUnica->addAttribute('TipoValidacao', "Transparente");
     }
 
     /**
@@ -565,13 +567,13 @@ class MoIP
 
         if (isset($param['valor_fixo']))
         {
-            $node = $this->xml->InstrucaoUnica->Comissoes->addChild('Comissao');
+            $node = $this->xml->InstrucaoUnica->Comissoes->addChild('Comissionamento');
             $node->addChild('Comissionado')->addChild('LoginMoIP',$param['login_moip']);
             $node->addChild('ValorFixo',$param['valor_fixo']);
         }
         else
         {
-            $node = $this->xml->InstrucaoUnica->Comissoes->addChild('Comissao');
+            $node = $this->xml->InstrucaoUnica->Comissoes->addChild('Comissionamento');
             $node->addChild('Comissionado')->addChild('LoginMoIP',$param['login_moip']);
             $node->addChild('ValorPercentual',$param['valor_percentual']);
         }
