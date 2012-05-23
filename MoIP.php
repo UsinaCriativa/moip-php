@@ -607,7 +607,7 @@ class MoIP
         {
             $parcela->addChild('Juros',$min);
         }
-	elseif(!empty($rate) and $rat == 0)
+	elseif(!empty($rate) and $rate == 0)
 	{
 	$parcela->addChild('Repassar','true');
 	}
