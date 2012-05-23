@@ -587,6 +587,7 @@ class MoIP
      * @param numeric $min The minimum number of parcels.
      * @param numeric $max The maximum number of parcels.
      * @param numeric $rate The percentual value of rates
+     * @param boolean when rate=0 Charging of interest on advance receipt subscrib Juros to Repassar
      * @return void
      * @access public
      */
@@ -602,10 +603,14 @@ class MoIP
         $parcela->addChild('MaximoParcelas',$max);
         $parcela->addChild('Recebimento','AVista');
 
-        if (!empty($rate))
+        if (!empty($rate) and $rate != 0)
         {
-            $parcela->addChild('rate',$min);
+            $parcela->addChild('Juros',$min);
         }
+	elseif(!empty($rate) and $rat == 0)
+	{
+	$parcela->addChild('Repassar','true');
+	}
 
         return $this;
     }
